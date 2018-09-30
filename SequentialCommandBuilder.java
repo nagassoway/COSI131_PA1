@@ -1,6 +1,7 @@
 package cs131.pa1.filter.sequential;
 
 import java.util.List;
+import cs131.pa1.filter.Filter;
 
 public class SequentialCommandBuilder {
 	protected static List<SequentialFilter> filters;
