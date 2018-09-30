@@ -14,34 +14,7 @@ public class SequentialCommandBuilder {
 		return filters;
 	}
 	
-	//Proposal for createFiltersFromCommand, based on adding setNextFilter commands while parsing each filter
-		public static List<SequentialFilter> createFiltersFromCommand(String command){
-		
-		LinkedList<SequentialFilter> filters = new LinkedList<SequentialFilter>();
-		String[] segments = command.split("[|]");
-		int j = 0;
-		SequentialFilter next = null;
-		SequentialFilter prev = null;
-		for (String i: segments) {
-			i = i.trim();
-			//filters.add(constructFilterFromSubCommand(i));
-			//setNextFilter method to allow filters to refer to each other
-			if(prev != null) {
-				
-				next = constructFilterFromSubCommand(i);
-				prev.setNextFilter(next);
-				filters.add(constructFilterFromSubCommand(i));
-			}
-			else {
-				
-				prev = constructFilterFromSubCommand(i);
-				filters.add(prev);
-			}
-			j++;
-		}
-		
-		return filters;
-	}
+
 	
 	private static SequentialFilter determineFinalFilter(String command){
 		return null;
