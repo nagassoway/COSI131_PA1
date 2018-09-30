@@ -72,9 +72,37 @@ public class CommandImplement extends SequentialFilter {
 	    path = normalizePath(path + SEPARATOR + newPath);
 	    return this;
 	}
-    
+	
+    @SuppressWarnings("resource")
     public void cat() {
-      
+      		//All files given go into an array
+		String[] segments = line.split(" ");
+		File f = processFile(segments[0]);
+		String fileLines = "";
+		//If there are no files to cat
+		try {
+			Scanner sc = new Scanner(f);
+			if(segments.length < 2) {
+			
+				System.out.println(Message.REQUIRES_PARAMETER.with_parameter(line));
+			}
+			else {
+			
+				for (String i: segments) {
+				
+					while(sc.hasNextLine()) {
+					
+						fileLines = fileLines + "\n" + sc.nextLine();
+					}
+				}
+			}
+		}
+	    catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	        System.out.println(Message.FILE_NOT_FOUND.with_parameter(line));
+	    }
+		
+		return fileLines;
     }
   
     public void ls() {
