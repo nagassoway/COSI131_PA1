@@ -1,4 +1,7 @@
 import java.io.*;
+package cs131.pa1.filter.sequential;
+import java.io.*;
+import java.util.Scanner;
 
 public class CommandImplement extends SequentialFilter {
 
