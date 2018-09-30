@@ -8,12 +8,11 @@ public class SequentialREPL {
 	static String currentWorkingDirectory;
 	
 	@SuppressWarnings("resource")
+	@SuppressWarnings("resource")
 	public static void main(String[] args){
 		
-		//LinkedList<String> pipes = new LinkedList<String>();
-		Message msg;
-		System.out.println(">Welcome to the Unix-ish command line.");
-		System.out.print(">");
+		System.out.println(Message.WELCOME);
+		System.out.print(Message.NEWCOMMAND);
 		Scanner input = new Scanner(System.in);
 		String cmd = input.nextLine();
 		List<SequentialFilter> cmds = new LinkedList<SequentialFilter>();
@@ -21,13 +20,14 @@ public class SequentialREPL {
 		while(!cmd.equals("exit")) {
 			
 			
-			System.out.print(">");
+			System.out.print(Message.NEWCOMMAND);
 			cmd = input.nextLine();
+			//Create linkedlist of commands into String lines of CommandImplements.
 			cmds = SequentialCommandBuilder.createFiltersFromCommand(cmd);
 			
 			
 		}
-		System.out.print("Thank you for using the Unix-ish command line. Goodbye!\n");
+		System.out.print(Message.GOODBYE);
 	}
 
 }
