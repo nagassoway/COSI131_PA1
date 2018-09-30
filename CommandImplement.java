@@ -2,6 +2,17 @@ import java.io.*;
 
 public class CommandImplement extends SequentialFilter {
 
+	public String commandType;
+	
+	public CommandImplement() {
+		
+		
+	}
+	
+	public CommandImplement(String type, String line) {
+		
+		this.commandType = type;
+	}
     	public String processFile(String file) {
 		
 		File f = new File(file);
@@ -65,4 +76,9 @@ public class CommandImplement extends SequentialFilter {
     public void processLine() {
       
     }
+	
+   public void addType(String type, String subCommand) {
+	
+	
+   }
 }
