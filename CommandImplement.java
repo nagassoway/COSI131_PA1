@@ -24,7 +24,7 @@ public class CommandImplement extends SequentialFilter {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.print("At least one of the files in the command" + "was not found.\n");
+			System.out.print(Message.FILE_NOT_FOUND);
 					
 		}
 	
