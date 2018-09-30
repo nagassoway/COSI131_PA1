@@ -24,6 +24,37 @@ public class SequentialCommandBuilder {
 	}
 	
 	private static SequentialFilter constructFilterFromSubCommand(String subCommand){
+				if(subCommand.substring(0, 2).equals("cd")) {
+			
+		}
+		else if(subCommand.substring(0,3).equals("cat")) {
+		
+		
+		}
+		else if(subCommand.substring(0, 2).equals("ls")) {
+		
+		
+		}
+		else if(subCommand.substring(0, 3).equals("pwd")) {
+		
+		
+		}
+		else if(subCommand.substring(0,4).equals("grep")) {
+		
+		
+		}
+		else if(subCommand.substring(0, 2).equals("wc")) {
+		
+		
+		}
+		else if(subCommand.substring(0, 4).equals("uniq")) {
+		
+		
+		}
+		else {
+		
+			System.out.println("The command " + subCommand + " was not recognized.");
+		}
 		return null;
 	}
 
