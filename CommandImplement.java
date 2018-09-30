@@ -87,12 +87,13 @@ public class CommandImplement extends SequentialFilter {
 			}
 			else {
 			
-				for (String i: segments) {
+				for (int i = 0; i < segments.length; i++) {
 				
 					while(sc.hasNextLine()) {
 					
 						fileLines = fileLines + "\n" + sc.nextLine();
 					}
+					sc = new Scanner(segments[i]);
 				}
 			}
 		}
