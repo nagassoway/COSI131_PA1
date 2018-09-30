@@ -20,6 +20,7 @@ public class SequentialREPL {
 			
 			System.out.print(Message.NEWCOMMAND);
 			cmd = input.nextLine();
+			cmds.clear();
 			//Create linkedlist of commands into String lines of CommandImplements.
 			cmds = SequentialCommandBuilder.createFiltersFromCommand(cmd);
 			Iterator<SequentialFilter> it = cmds.iterator();
