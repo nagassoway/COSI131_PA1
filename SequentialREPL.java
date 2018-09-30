@@ -11,7 +11,7 @@ public class SequentialREPL {
 	@SuppressWarnings("resource")
 	public static void main(String[] args){
 		
-		System.out.println(Message.WELCOME);
+		System.out.print(Message.WELCOME);
 		System.out.print(Message.NEWCOMMAND);
 		Scanner input = new Scanner(System.in);
 		String cmd = input.nextLine();
