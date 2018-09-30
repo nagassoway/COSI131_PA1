@@ -15,21 +15,11 @@ public class CommandImplement extends SequentialFilter {
 		this.commandType = type;
 		this.line = line;
 	}
-    	public String processFile(String file) {
+	public File processFile(String file) {
 		
 		File f = new File(file);
-		
-		try {
-			Scanner sc = new Scanner(f);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.print(Message.FILE_NOT_FOUND);
-					
-		}
+		return f;
 	
-		
-		return null;
 	}
 	
 		//Detect type of command
