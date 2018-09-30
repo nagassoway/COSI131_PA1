@@ -24,16 +24,17 @@ public class SequentialREPL {
 			cmd = input.nextLine();
 			//Create linkedlist of commands into String lines of CommandImplements.
 			cmds = SequentialCommandBuilder.createFiltersFromCommand(cmd);
-						Iterator it = cmds.iterator();
-			String output = "";
-			SequentialFilter next = (SequentialFilter) it.next();
+			Iterator<SequentialFilter> it = cmds.iterator();
+			CommandImplement next = (CommandImplement) it.next();
 			do {
 				
 				next.process();
-				next = (SequentialFilter) it.next();
+				next = (CommandImplement) it.next();
 				
 			}	while(it.hasNext());
 			System.out.println(next.output.poll());
+			
+		}
 			
 			
 		}
