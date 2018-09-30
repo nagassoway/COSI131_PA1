@@ -14,46 +14,40 @@ public class SequentialCommandBuilder {
 		return filters;
 	}
 	
+	//Proposal for createFiltersFromCommand, based on adding setNextFilter commands while parsing each filter
+		public static List<SequentialFilter> createFiltersFromCommand(String command){
+		
+		LinkedList<SequentialFilter> filters = new LinkedList<SequentialFilter>();
+		String[] segments = command.split("[|]");
+		int j = 0;
+		SequentialFilter next = null;
+		SequentialFilter prev = null;
+		for (String i: segments) {
+			i = i.trim();
+			//filters.add(constructFilterFromSubCommand(i));
+			//setNextFilter method to allow filters to refer to each other
+			if(prev != null) {
+				
+				next = constructFilterFromSubCommand(i);
+				prev.setNextFilter(next);
+				filters.add(constructFilterFromSubCommand(i));
+			}
+			else {
+				
+				prev = constructFilterFromSubCommand(i);
+				filters.add(prev);
+			}
+			j++;
+		}
+		
+		return filters;
+	}
+	
 	private static SequentialFilter determineFinalFilter(String command){
 		return null;
 	}
 	
 	private static String adjustCommandToRemoveFinalFilter(String command){
-		return null;
-	}
-	
-	private static SequentialFilter constructFilterFromSubCommand(String subCommand){
-				if(subCommand.substring(0, 2).equals("cd")) {
-			
-		}
-		else if(subCommand.substring(0,3).equals("cat")) {
-		
-		
-		}
-		else if(subCommand.substring(0, 2).equals("ls")) {
-		
-		
-		}
-		else if(subCommand.substring(0, 3).equals("pwd")) {
-		
-		
-		}
-		else if(subCommand.substring(0,4).equals("grep")) {
-		
-		
-		}
-		else if(subCommand.substring(0, 2).equals("wc")) {
-		
-		
-		}
-		else if(subCommand.substring(0, 4).equals("uniq")) {
-		
-		
-		}
-		else {
-		
-			System.out.println("The command " + subCommand + " was not recognized.");
-		}
 		return null;
 	}
 	
