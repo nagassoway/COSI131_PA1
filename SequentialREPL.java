@@ -26,15 +26,17 @@ public class SequentialREPL {
 			cmds = SequentialCommandBuilder.createFiltersFromCommand(cmd);
 			Iterator<SequentialFilter> it = cmds.iterator();
 			CommandImplement next = (CommandImplement) it.next();
-			do {
+			CommandImplement prev = next;
+			next.process();
+			while(it.hasNext()) {
 				
-				next.process();
 				next = (CommandImplement) it.next();
+				next.process();
+				prev.setNextFilter(next);
+				prev = (CommandImplement) it.next();
 				
-			}	while(it.hasNext());
+			}
 			System.out.println(next.output.poll());
-			
-		}
 			
 			
 		}
