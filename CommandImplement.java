@@ -32,6 +32,43 @@ public class CommandImplement extends SequentialFilter {
 		return null;
 	}
 	
+		//Detect type of command
+	protected void processCommand(String value) {
+		
+		if(value.substring(0, 2).equals("cd")) {
+			
+			addType("cd", value);
+		}
+		else if(value.substring(0,3).equals("cat")) {
+		
+			addType("cat", value);
+		}
+		else if(value.substring(0, 2).equals("ls")) {
+		
+			addType("ls", value);
+		}
+		else if(value.substring(0, 3).equals("pwd")) {
+		
+			addType("pwd", value);
+		}
+		else if(value.substring(0,4).equals("grep")) {
+		
+			addType("grep", value);
+		}
+		else if(value.substring(0, 2).equals("wc")) {
+		
+			addType("wc", value);
+		}
+		else if(value.substring(0, 4).equals("uniq")) {
+		
+			addType("uniq", value);
+		}
+		else {
+		
+			System.out.println(Message.COMMAND_NOT_FOUND);
+		}
+	}
+	
 	public String cd(String newPath) {
 	    if (isAbsolutePath(newPath)) {
 	        path = normalizePath(newPath);
@@ -81,6 +118,6 @@ public class CommandImplement extends SequentialFilter {
 	
    public void addType(String type, String subCommand) {
 	
-	
+	this.type = type;
    }
 }
