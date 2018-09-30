@@ -3,10 +3,9 @@ package cs131.pa1.filter.sequential;
 import java.util.List;
 
 public class SequentialCommandBuilder {
-	private static List<SequentialFilter> filters;
 	
 	public static List<SequentialFilter> createFiltersFromCommand(String command){
-		filters = new LinkedList<SequentialFilter>();
+		List<SequentialFilter> filters = new LinkedList<SequentialFilter>();
 		String[] segments = command.split("[|]");
 		for (String i: segments) {
 			i = i.trim();
