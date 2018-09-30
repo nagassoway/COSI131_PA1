@@ -2,6 +2,7 @@ import java.io.*;
 package cs131.pa1.filter.sequential;
 import java.io.*;
 import java.util.Scanner;
+import cs131.pa1.filter.Message;
 
 public class CommandImplement extends SequentialFilter {
 
