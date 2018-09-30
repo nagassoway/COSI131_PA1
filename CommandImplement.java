@@ -107,6 +107,26 @@ public class CommandImplement extends SequentialFilter {
   
     public void ls() {
       
+		File[] paths;
+	      try {  
+	          
+	          // create new file
+	          File f = new File(" ");
+	          
+	          // returns pathnames for files and directory
+	          paths = f.listFiles();
+	          
+	          // for each pathname in pathname array
+	          for(File path:paths) {
+	          
+	             // prints file and directory paths
+	             System.out.println(path);
+	          }
+	          
+	       } catch(Exception e) {
+	          // if any error occurs
+	          e.printStackTrace();
+	       }
     }
   
     public void cd() {
