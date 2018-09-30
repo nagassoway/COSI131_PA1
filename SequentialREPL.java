@@ -32,9 +32,7 @@ public class SequentialREPL {
 				
 				next = (CommandImplement) it.next();
 				next.process();
-				prev.setNextFilter(next);
-				prev = (CommandImplement) it.next();
-				
+
 			}
 			System.out.println(next.output.poll());
 			
