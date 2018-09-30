@@ -52,6 +52,25 @@ public class SequentialCommandBuilder {
 	}
 
 	private static boolean linkFilters(List<SequentialFilter> filters){
-		return false;
+		Object[] filterlist = filters.toArray();
+		try {
+			int i = 0;
+			for (Object f: filterlist) {
+				try {
+					if (i>0) {
+						((Filter) f).setPrevFilter((Filter) filterlist[i-1]);
+					}
+					((Filter) f).setNextFilter((Filter) filterlist[i+1]);
+				} catch(Exception e) {
+					return false;
+				}
+				i++;
+			}
+			return true;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
