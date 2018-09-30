@@ -135,6 +135,9 @@ public class CommandImplement extends SequentialFilter {
   
     public void pwd() {
       
+	   System.out.println("Working Directory = " + System.getProperty("user.dir"));
+	   File r = new File(" ");
+	   System.out.println(r.getAbsolutePath());
     }
   
     public void grep() {
