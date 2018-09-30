@@ -4,11 +4,8 @@ import java.util.List;
 
 public class SequentialCommandBuilder {
 	private static List<SequentialFilter> filters;
-	protected static SequentialBuilder commands;
 	
 	public static List<SequentialFilter> createFiltersFromCommand(String command){
-		commands = new CommandInterpreter();
-		commands.input = new LinkedList();
 		filters = new LinkedList<SequentialFilter>();
 		String[] segments = command.split("[|]");
 		for (String i: segments) {
@@ -67,8 +64,10 @@ public class SequentialCommandBuilder {
 		if (checkCommands(segments[0]) == false) {
 			return null;			
 		} else {
-			commands.input.add(subCommand);
-			return null;
+			SequentialFilter command = new CommandImplement();
+			command.input = new LinkedList<String>();
+			command.input.add(subCommand);
+			return command;
 		}
 	}
 
