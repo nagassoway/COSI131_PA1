@@ -114,4 +114,9 @@ public class CommandImplement extends SequentialFilter {
 	
 	this.type = type;
    }
+	
+@Override
+public boolean isDone() {
+	return input.size() == 0;
+}
 }
