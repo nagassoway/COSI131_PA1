@@ -16,9 +16,7 @@ public class SequentialREPL {
 		Scanner input = new Scanner(System.in);
 		String cmd = input.nextLine();
 		List<SequentialFilter> cmds = new LinkedList<SequentialFilter>();
-		String[] splits = new String[10];
 		while(!cmd.equals("exit")) {
-			
 			
 			System.out.print(Message.NEWCOMMAND);
 			cmd = input.nextLine();
