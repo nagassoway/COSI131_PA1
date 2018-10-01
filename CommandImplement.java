@@ -75,12 +75,10 @@ public class CommandImplement extends SequentialFilter {
 	@SuppressWarnings("resource")
 	public String cat() {
 	      
+		
 		//All files given go into an array
 		String[] segments = line.split(" ");
-		if(!output.isEmpty()) {
-			segments[segments.length] = output.poll();
-		}
-		File f = processFile(segments[0]);
+		File f = processFile(segments[1]);
 		String fileLines = "";
 		//If there are no files to cat
 		try {
@@ -90,22 +88,31 @@ public class CommandImplement extends SequentialFilter {
 				System.out.print(Message.REQUIRES_PARAMETER.with_parameter(line));
 			}
 			else {
-			
-				for (int i = 0; i < segments.length; i++) {
-				
+				for (int i = 1; i < segments.length; i++) {
+					
+					sc = new Scanner(new File(segments[i]));
+					int j = 1;
 					while(sc.hasNextLine()) {
 					
-						fileLines = fileLines + "\n" + sc.nextLine();
+						if(j == 1) {
+							
+							fileLines = fileLines + sc.nextLine();
+							
+						}
+						else {
+							
+							fileLines = fileLines + "\n" + sc.nextLine();
+						}
+						j++;
 					}
-					sc = new Scanner(segments[i]);
 				}
 			}
 		}
 	    catch (FileNotFoundException e) {
-	        e.printStackTrace();
+	        
 	        System.out.print(Message.FILE_NOT_FOUND.with_parameter(line));
 	    }
-		
+		System.out.print(fileLines);
 		return fileLines;
 	}
 	
