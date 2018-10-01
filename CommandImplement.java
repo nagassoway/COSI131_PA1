@@ -137,8 +137,35 @@ public class CommandImplement extends SequentialFilter {
 	       }
 	}
   
-    public void cd() {
-      
+    private String cd (String[] line) {   		
+    		if (line.length == 1) {
+    			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(line[0]));
+    			return null;
+    		} else {
+    			try {
+    				String[] dir = line[1].split(Filter.FILE_SEPARATOR);
+    				File r = new File("");
+    				if (dir[0].equals("..")) {
+    					String path = r.getAbsolutePath();
+    					String[] spl = path.split(Filter.FILE_SEPARATOR);
+    					int i = 1;
+    					String output = "";
+    					for (String s: spl) {
+    						if (i != spl.length) {
+    							output = output + Filter.FILE_SEPARATOR + s;
+    						}
+    					}
+    					return output;
+    				} else {
+    					String path = r.getAbsolutePath();
+    					path = path + Filter.FILE_SEPARATOR + line[1]; 
+    					return path;
+    				}
+    			} catch (Exception e) {
+    				System.out.print(Message.DIRECTORY_NOT_FOUND.with_parameter(line[1]));
+    				return null;
+    			}
+    		}
     }
   
    public void pwd() {
@@ -159,16 +186,62 @@ public class CommandImplement extends SequentialFilter {
 	   System.out.println("");
    }
   
-    public void grep() {
-      
+    private String grep (String[] line) {
+    		if (line.length == 1) {
+    			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(line[0]));
+    		} else {
+    			try {
+    				Scanner sc = new Scanner (this.input.peek());
+    				try {
+    					while (sc.hasNext()) {
+    						String fileContents = sc.next();
+    						if (fileContents.contains(line[1])) {
+    							return fileContents;
+    						}
+    					}
+    				} catch (Exception e) {
+    					
+    				}
+    			} catch (Exception e) {
+    				System.out.print(Message.REQUIRES_INPUT.with_parameter(line[0]));
+    			}
+    		}
+    		return null;
     }
   
-    public void wc() {
-      
+    private String wc (String[] line) {
+    		int lines = 0;
+    		int words = 0;
+    		int chars = 0;
+    		try {
+    			Scanner sc = new Scanner (this.input.peek());
+    			while (sc.hasNext()) {
+    				String inputString = sc.next();
+    				lines++;
+    				String[] wordCount = inputString.split(" ");
+    				words = words + wordCount.length;
+    				String[] charCount = inputString.split("");
+    				chars = chars + charCount.length;
+    			}
+    			sc.close();
+    		} catch (Exception e) {
+    			System.out.print(Message.REQUIRES_INPUT.with_parameter(line[0]));
+    		}
+    		return "\t" + lines + "\t" + words + "\t" + chars;
     }
   
-    public void uniq() {
-      
+    private String uniq (String[] line) {
+    		HashSet<String> uniqLines = new HashSet<String>();
+    		Scanner sc = new Scanner (this.input.peek());
+    		while (sc.hasNext()) {
+    			String currLine = sc.next();
+    			if (!uniqLines.contains(currLine)) {
+    				uniqLines.add(currLine);
+    				this.output.add(currLine);
+    			}
+    		}
+    		sc.close();
+    		return null;
     }
   
     public void greaterThan() {
