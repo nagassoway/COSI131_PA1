@@ -55,7 +55,7 @@ public class SequentialCommandBuilder {
 		case "wc" : return true;
 		case "uniq" : return true;
 		case "exit": return true;
-		default: System.out.println(Message.COMMAND_NOT_FOUND); return false;
+		default: System.out.print(Message.COMMAND_NOT_FOUND); return false;
 		}
 	}
 
