@@ -236,9 +236,27 @@ public class CommandImplement extends SequentialFilter {
     		return null;
     }
   
-    public void greaterThan() {
-
-    }
+    private void greaterThan(String line) {
+		String[] commandSegments = line.split(">");
+		String[] subCommand = commandSegments[0].split(" ");
+		switch (subCommand[0]) {
+		case "pwd" : commandSegments[0] =pwd (commandSegments); break;
+		case "ls" : commandSegments[0] =ls (commandSegments); break;
+		case "cd" : commandSegments[0] =cd (commandSegments); break;
+		case "cat" : commandSegments[0] =cat (commandSegments); break;
+		case "grep" : commandSegments[0] =grep (commandSegments); break;
+		case "wc" :commandSegments[0] =wc (commandSegments); break;
+		case "uniq" : commandSegments[0] =uniq (commandSegments); break;
+		}
+		File f = new File(commandSegments[1]);
+	    try {
+	    		BufferedWriter writer = new BufferedWriter(new FileWriter(f));
+			writer.write(commandSegments[0]);
+			writer.close();
+		} catch (IOException e) {
+			System.out.print(Message.REQUIRES_INPUT.with_parameter(">"));
+		}
+	}
   
     @Override
     public void processLine() {
