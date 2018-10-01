@@ -62,16 +62,6 @@ public class CommandImplement extends SequentialFilter {
 		}
 	}
 	
-	public String cd(String newPath) {
-	    if (isAbsolutePath(newPath)) {
-	        path = normalizePath(newPath);
-	        return this;
-	    }
-
-	    path = normalizePath(path + SEPARATOR + newPath);
-	    return this;
-	}
-	
 	@SuppressWarnings("resource")
 	public String cat() {
 	      
