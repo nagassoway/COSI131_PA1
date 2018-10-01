@@ -58,7 +58,7 @@ public class CommandImplement extends SequentialFilter {
 		}
 		else {
 		
-			System.out.println(Message.COMMAND_NOT_FOUND);
+			System.out.print(Message.COMMAND_NOT_FOUND);
 		}
 	}
 	
@@ -87,7 +87,7 @@ public class CommandImplement extends SequentialFilter {
 			Scanner sc = new Scanner(f);
 			if(segments.length < 2) {
 			
-				System.out.println(Message.REQUIRES_PARAMETER.with_parameter(line));
+				System.out.print(Message.REQUIRES_PARAMETER.with_parameter(line));
 			}
 			else {
 			
@@ -103,14 +103,14 @@ public class CommandImplement extends SequentialFilter {
 		}
 	    catch (FileNotFoundException e) {
 	        e.printStackTrace();
-	        System.out.println(Message.FILE_NOT_FOUND.with_parameter(line));
+	        System.out.print(Message.FILE_NOT_FOUND.with_parameter(line));
 	    }
 		
 		return fileLines;
 	}
 	
-    public void ls() {
-   
+	public void ls() {
+	   
 		File[] paths;
 	    try {  
 	          
@@ -127,8 +127,8 @@ public class CommandImplement extends SequentialFilter {
 	          // if any error occurs
 	          e.printStackTrace();
 	          System.out.print(Message.DIRECTORY_NOT_FOUND);
-	    }
-    }
+	       }
+	}
   
     public void cd() {
       
