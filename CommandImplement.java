@@ -134,11 +134,22 @@ public class CommandImplement extends SequentialFilter {
       
     }
   
-    public void pwd() {
-      
-	   File r = new File(" ");
-	   System.out.println(r.getAbsolutePath());
-    }
+   public void pwd() {
+	   
+	   File r = new File("");
+	   String path = r.getAbsolutePath();
+	   String[] spl = path.split("\\\\");
+	   System.out.print("/");
+	   int j = 0;
+	   for(String i: spl) {
+		   
+		   System.out.print(i);
+		   if(j > 0) {
+			   
+			   System.out.print("/");
+		   }
+	   }
+   }
   
     public void grep() {
       
