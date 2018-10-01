@@ -112,7 +112,7 @@ public class CommandImplement extends SequentialFilter {
 	        
 	        System.out.print(Message.FILE_NOT_FOUND.with_parameter(line));
 	    }
-		System.out.print(fileLines);
+		System.out.println(fileLines);
 		return fileLines;
 	}
 	
@@ -156,6 +156,7 @@ public class CommandImplement extends SequentialFilter {
 			   System.out.print("/");
 		   }
 	   }
+	   System.out.println("");
    }
   
     public void grep() {
