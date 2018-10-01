@@ -21,8 +21,6 @@ public class SequentialREPL {
 			
 			//Create linkedlist of commands into String lines of CommandImplements.
 			cmds = SequentialCommandBuilder.createFiltersFromCommand(cmd);
-			
-			System.out.println();
 			System.out.print(Message.NEWCOMMAND);
 			cmd = input.nextLine();
 		}
