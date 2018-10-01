@@ -15,9 +15,9 @@ public class SequentialCommandBuilder {
 		}
 		linkFilters(filters);
 		for (SequentialFilter f: filters) {
-			if (f.output != null) {
+			//if (f.output != null) {
 				f.process();		
-			}
+			//}
 		}
 		return filters;
 	}
