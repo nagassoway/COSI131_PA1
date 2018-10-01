@@ -250,7 +250,17 @@ public class CommandImplement extends SequentialFilter {
   
     @Overide
     public void processLine() {
-      
+      		String[] commandSegments = line.split(" ");
+		switch (commandSegments[0]) {
+		case "pwd" : return pwd(commandSegments); 
+		case "ls" : return ls(commandSegments); 
+		case "cd" : return cd(commandSegments);
+		case "cat" : return cat(commandSegments); 
+		case "grep" : return grep(commandSegments); 
+		case "wc" : return wc(commandSegments); 
+		case "uniq" : return uniq(commandSegments); 
+		default: return null;
+		}
     }
 	
    public void addType(String type, String subCommand) {
