@@ -72,10 +72,14 @@ public class CommandImplement extends SequentialFilter {
 	    return this;
 	}
 	
-    @SuppressWarnings("resource")
-    public void cat() {
-      		//All files given go into an array
+	@SuppressWarnings("resource")
+	public String cat() {
+	      
+		//All files given go into an array
 		String[] segments = line.split(" ");
+		if(!output.isEmpty()) {
+			segments[segments.length] = output.poll();
+		}
 		File f = processFile(segments[0]);
 		String fileLines = "";
 		//If there are no files to cat
@@ -103,8 +107,8 @@ public class CommandImplement extends SequentialFilter {
 	    }
 		
 		return fileLines;
-    }
-  
+	}
+	
     public void ls() {
       
 		File[] paths;
