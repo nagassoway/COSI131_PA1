@@ -64,15 +64,54 @@ public class CommandImplement extends SequentialFilter {
 		}
 	}
 	
+	@Override
+	protected String processLine(String line) {
+
+		processCommand(line);
+		String[] commandSegments = line.split(" ");
+		if(commandType.equals("cd")) {
+			
+			cd(commandSegments);
+		}
+		else if(commandType.equals("pwd")) {
+			
+			pwd();
+		}
+		else if(commandType.equals("cat")) {
+			
+			cat();
+		}
+		else if(commandType.equals("ls")) {
+			
+			ls();
+		}
+		else if(commandType.equals("grep")) {
+			
+			return grep(commandSegments);
+		}
+		else if(commandType.equals("wc")) {
+			
+			return wc(commandSegments);
+		}
+		else if(commandType.equals("uniq")) {
+			
+			return uniq(commandSegments);
+		}
+		return null;
+	}
+	
 	@SuppressWarnings("resource")
-	public String cat() {
+	private String cat() {
 	      
-		
+		if(line.equals("cat")) {
+			
+			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(line));
+		}
 		//All files given go into an array
 		String[] segments = line.split(" ");
 		File f = processFile(segments[1]);
 		String fileLines = "";
-		//If there are no files to cat
+		//If there are files to cat
 		try {
 			Scanner sc = new Scanner(f);
 			if(segments.length < 2) {
@@ -129,52 +168,45 @@ public class CommandImplement extends SequentialFilter {
 	       }
 	}
   
-    private String cd (String[] line) {   		
-    		if (line.length == 1) {
-    			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(line[0]));
-    			return null;
-    		} else {
-    			try {
-    				String[] dir = line[1].split(Filter.FILE_SEPARATOR);
-    				File r = new File("");
-    				if (dir[0].equals("..")) {
-    					String path = r.getAbsolutePath();
-    					String[] spl = path.split(Filter.FILE_SEPARATOR);
-    					int i = 1;
-    					String output = "";
-    					for (String s: spl) {
-    						if (i != spl.length) {
-    							output = output + Filter.FILE_SEPARATOR + s;
-    						}
-    					}
-    					return output;
-    				} else {
-    					String path = r.getAbsolutePath();
-    					path = path + Filter.FILE_SEPARATOR + line[1]; 
-    					return path;
-    				}
-    			} catch (Exception e) {
-    				System.out.print(Message.DIRECTORY_NOT_FOUND.with_parameter(line[1]));
-    				return null;
-    			}
-    		}
+    private String cd (String[] line) {   	
+    	
+		if (line.length == 1) {
+			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(line[0]));
+			return null;
+		} else {
+			try {
+				String[] dir = line[1].split(Filter.FILE_SEPARATOR);
+				File r = new File("");
+				if (dir[0].equals("..")) {
+					String path = r.getAbsolutePath();
+					String[] spl = path.split(Filter.FILE_SEPARATOR);
+					int i = 1;
+					String output = "";
+					for (String s: spl) {
+						if (i != spl.length) {
+							output = output + Filter.FILE_SEPARATOR + s;
+						}
+					}
+					System.out.println(output);
+					return output;
+				} else {
+					String path = r.getAbsolutePath();
+					path = path + Filter.FILE_SEPARATOR + line[1]; 
+					System.out.println(path);
+					return path;
+				}
+			} catch (Exception e) {
+				System.out.print(Message.DIRECTORY_NOT_FOUND.with_parameter(line[1]));
+				return null;
+			}
+		}
     }
   
-   public void pwd() {
+   private void pwd() {
 	   
 	   File r = new File("");
 	   String path = r.getAbsolutePath();
-	   String[] spl = path.split("\\\\");
-	   System.out.print("/");
-	   int j = 0;
-	   for(String i: spl) {
-		   
-		   System.out.print(i);
-		   if(j > 0) {
-			   
-			   System.out.print("/");
-		   }
-	   }
+	   System.out.print(path);
 	   System.out.println("");
    }
   
@@ -258,7 +290,7 @@ public class CommandImplement extends SequentialFilter {
 		}
 	}
   
-    @Override
+  /*  @Override
     public void processLine() {
       		String[] commandSegments = line.split(" ");
 		switch (commandSegments[0]) {
@@ -271,7 +303,7 @@ public class CommandImplement extends SequentialFilter {
 		case "uniq" : return uniq(commandSegments); 
 		default: return null;
 		}
-    }
+    }*/
 	
    public void addType(String type, String subCommand) {
 	
