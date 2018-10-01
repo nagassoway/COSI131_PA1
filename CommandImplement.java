@@ -75,7 +75,7 @@ public class CommandImplement extends SequentialFilter {
 		}
 		else if(commandType.equals("pwd")) {
 			
-			pwd();
+			return pwd();
 		}
 		else if(commandType.equals("cat")) {
 			
@@ -202,12 +202,13 @@ public class CommandImplement extends SequentialFilter {
 		}
     }
   
-   private void pwd() {
+   private String pwd() {
 	   
 	   File r = new File("");
 	   String path = r.getAbsolutePath();
 	   System.out.print(path);
 	   System.out.println("");
+	   return path;
    }
   
     private String grep (String[] line) {
